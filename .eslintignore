@@ -1,0 +1,5 @@
+build/*
+dist/*
+src/common/libs/*
+src/common/templates/*
+src/pages/**/*.html
