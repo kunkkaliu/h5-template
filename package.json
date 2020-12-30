@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf ./dist && webpack --config ./build/webpack.prod.config.js --progress --colors",
     "analyze": "cross-env ANALYZE=1 npm run build",
-    "dev": "cross-env node ./server/app.dev.js --watch server --watch build"
+    "dev": "node ./server/app.dev.js --watch server --watch build"
   },
   "author": "kunkkaliu",
   "license": "ISC",

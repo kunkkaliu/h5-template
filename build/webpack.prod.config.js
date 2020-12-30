@@ -7,13 +7,13 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 base.mode = 'production';
+base.output.filename = 'static/js/[name].[chunkhash].js';
+base.output.chunkFilename = 'static/js/[name].[chunkhash].js';
+base.output.publicPath = '/sizon/';
 base.devtool = 'source-map';
 Object.keys(base.entry).forEach(function (name) {
   base.entry[name] = [].concat(base.entry[name]);
 });
-base.output.filename = 'static/js/[name].[chunkhash].js';
-base.output.chunkFilename = 'static/js/[name].[chunkhash].js';
-
 base.optimization = {
   runtimeChunk: {
     name: "runtime"

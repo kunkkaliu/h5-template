@@ -42,19 +42,18 @@ for (let key in htmls) {
   const ekey = key.split('.')[0];
   entries[key] = './src/pages/' + ekey + '/' + ekey + '.js';
   HtmlPlugin.push(new HtmlWebpackPlugin({
-    filename: 'views/' + key + '.html',
+    filename: key + '.html',
     template: htmls[key],
     inject: true,
     favicon: src('favicon.ico'),
     chunks: ['runtime', 'vendor', key],
     minify: {
       collapseWhitespace: true,
-      collapseInlineTagWhitespace: true,
+      removeComments: true,
       removeRedundantAttributes: true,
-      removeEmptyAttributes: true,
       removeScriptTypeAttributes: true,
       removeStyleLinkTypeAttributes: true,
-      removeComments: true
+      useShortDoctype: true
     }
   }))
 }

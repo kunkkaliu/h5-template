@@ -92,7 +92,7 @@ const logger = Logger({
   } else if (cluster.isWorker) {
     const app = new Koa();
     app.context.logger = logger;
-    const basePath = path.join(config.output.path, 'views');
+    const basePath = path.join(config.output.path, '');
     koaRender(app, basePath);
     app.use(koaParams());
     app.use(koaLogger());
