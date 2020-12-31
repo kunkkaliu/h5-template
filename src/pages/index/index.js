@@ -16,7 +16,7 @@ class Index {
   init() {
     document.addEventListener('DOMContentLoaded', function () {
       FastClick.attach(document.body);
-    });
+    }, false);
     const images = [
       require('../../assets/images/bg.png'),
       require('../../assets/images/bg1.png'),
@@ -26,8 +26,8 @@ class Index {
       require('../../assets/images/music_icon.png'),
     ];
     preloadImgsSequence(images, (len, total) => {
-      document.querySelector('.loaded').style.width = `${len * 100 / total}%`;
-      document.querySelector('.progress').innerText = `${len * 100 / total}%`;
+      document.querySelector('.loaded').style.width = `${Math.floor(len * 100 / total)}%`;
+      document.querySelector('.progress').innerText = `${Math.floor(len * 100 / total)}%`;
       if (len < total) return;
       setTimeout(() => {
         document.querySelector('.loading-container').classList.add('hide');
@@ -56,29 +56,28 @@ class Index {
     player.addEventListener('playing', function () {
       musicBtn.classList.remove('stopAnimation');
       musicBtn.classList.add('runAnimation');
-    });
+    }, false);
     player.addEventListener('pause', function () {
       musicBtn.classList.remove('runAnimation');
       musicBtn.classList.add('stopAnimation');
-    });
+    }, false);
     player.addEventListener('error', function () {
       musicBtn.classList.remove('runAnimation');
       musicBtn.classList.add('stopAnimation');
-    });
+    }, false);
+    player.addEventListener('canplay', function () {
+      document.visibilityState === 'visible' && player.play().catch(() => {});
+    }, false);
+    document.addEventListener('visibilitychange', function () {
+      document.visibilityState === 'visible' ? player.play().catch(() => {}) : player.pause();
+    }, false);
     musicBtn.addEventListener('click', function () {
       if (musicBtn.classList.contains('stopAnimation')) {
         player.play();
       } else {
         player.pause();
       }
-    });
-    try {
-      player.play().catch(function (e) {
-        console.error('auto play failed: ', e);
-      });
-    } catch (err) {
-      console.error('auto play failed: ', err);
-    }
+    }, false);
   }
 }
 
