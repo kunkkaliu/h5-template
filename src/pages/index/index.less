@@ -142,3 +142,30 @@
     background-position: center center;
   }
 }
+
+.music-btn {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  right: 36px;
+  top: 36px;
+  opacity: 1;
+  display: block;
+  z-index: 998;
+  transform-origin: center center;
+  animation: 5s linear 0s infinite normal forwards running rotateRound;
+}
+.runAnimation {
+  animation-play-state: running !important;
+}
+.stopAnimation {
+  animation-play-state: paused !important;
+}
+@keyframes rotateRound {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}

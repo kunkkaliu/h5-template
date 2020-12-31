@@ -23,6 +23,7 @@ class Index {
       require('../../assets/images/bg2.png'),
       require('../../assets/images/bg3.png'),
       require('../../assets/images/intro.jpg'),
+      require('../../assets/images/music_icon.png'),
     ];
     preloadImgsSequence(images, (len, total) => {
       document.querySelector('.loaded').style.width = `${len * 100 / total}%`;
@@ -34,8 +35,6 @@ class Index {
         const swiperAnimation = new SwiperAnimation();
         new Swiper('.swiper-container', {
           direction: 'vertical',
-          preloadImages: false,
-          lazy: true,
           on: {
             init: function () {
               swiperAnimation.init(this).animate();
@@ -45,8 +44,41 @@ class Index {
             },
           },
         });
+        this.initPlayer();
       }, 500);
     });
+  }
+
+  initPlayer() {
+    const player = document.getElementById('bgmedia');
+    const musicBtn = document.querySelector('.music-btn');
+    player.src = require('../../assets/media/music.mp3');
+    player.addEventListener('playing', function () {
+      musicBtn.classList.remove('stopAnimation');
+      musicBtn.classList.add('runAnimation');
+    });
+    player.addEventListener('pause', function () {
+      musicBtn.classList.remove('runAnimation');
+      musicBtn.classList.add('stopAnimation');
+    });
+    player.addEventListener('error', function () {
+      musicBtn.classList.remove('runAnimation');
+      musicBtn.classList.add('stopAnimation');
+    });
+    musicBtn.addEventListener('click', function () {
+      if (musicBtn.classList.contains('stopAnimation')) {
+        player.play();
+      } else {
+        player.pause();
+      }
+    });
+    try {
+      player.play().catch(function (e) {
+        console.error('auto play failed: ', e);
+      });
+    } catch (err) {
+      console.error('auto play failed: ', err);
+    }
   }
 }
 

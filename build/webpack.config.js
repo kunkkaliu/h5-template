@@ -104,8 +104,18 @@ module.exports = {
         test: /\.(woff2?|eot|ttf|otf|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
+          esModule: false,
           limit: 10240,
           name: 'static/fonts/[name].[hash:8].[ext]'
+        }
+      },
+      {
+        test: /\.mp3$/,
+        loader: 'url-loader',
+        options: {
+          esModule: false,
+          limit: 10240,
+          name: 'static/mp3/[name].[hash:8].[ext]'
         }
       },
       {
