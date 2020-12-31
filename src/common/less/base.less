@@ -35,8 +35,7 @@ table {
 }
 
 body {
-  font-family: Arial, "Microsoft YaHei";
-  font: 12px/1.5 Arial, Microsoft YaHei, helvetica, sans-serif;
+  font-family: Arial, "Microsoft YaHei", helvetica, sans-serif;
   font-style: normal;
   font-variant: normal;
   font-weight: normal;
@@ -67,83 +66,14 @@ textarea {
   /*去除苹果手机input默认样式*/
   -webkit-tap-highlight-color: transparent;
   /*去除苹果手机input框会有输入灰色背景*/
-
   border: none;
 }
 
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #c6c8d6;
-  font-size: pxTorem(30);
-}
-
-.mask {
-  background-color: #495056;
-  -webkit-opacity: .8;
-  opacity: .8;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 99;
-  width: 100%;
-  height: 100%;
-  display: none;
-}
-
-.mask.active {
-  display: block;
-}
-
-.clearfix {
-  zoom: 1;
-}
-
-.clearfix:after {
-  content: ".";
-  width: 0;
-  height: 0;
-  visibility: hidden;
-  display: block;
-  clear: both;
-}
-
-.fl {
-  float: left
-}
-
-.fr {
-  float: right
-}
-
-.tl {
-  text-align: left;
-}
-
-.tc {
-  text-align: center
-}
-
-.tr {
-  text-align: right;
-}
-
-.ellipse {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
 img {
   border: 0
-}
-
-.bodyActive {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-#root {
-  min-height: 100%;
 }

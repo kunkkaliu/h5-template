@@ -19,7 +19,14 @@
 </head>
 
 <body>
-  <div class="swiper-container">
+  <div id="loading-container" class="loading-container">
+    <div class="loading-wrapper">
+      <div class="loading-bg"></div>
+      <div class="loaded"></div>
+    </div>
+    <div class="progress">0%</div>
+  </div>
+  <div class="swiper-container hide">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <div data-swiper-animation="animate__zoomIn" data-duration="1s" data-delay=".2s" class="element-1"></div>
@@ -78,15 +85,7 @@
       </div>
     </div>
   </div>
-  <!-- <div id="root-ele">
-    <div id="ele-1">1
-      <img src="<%= require('../../assets/images/bg.png')%>" />
-    </div>
-    <div id="ele-2">2
-      <img src="<%= require('../../assets/images/bg1.png')%>" />
-    </div>
-    <div id="ele-3">3</div>
-  </div> -->
+  <!-- <img src="<%= require('../../assets/images/bg.png')%>" /> -->
 </body>
 
 </html>
