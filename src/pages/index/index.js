@@ -1,11 +1,11 @@
 import FastClick from 'fastclick';
 import Swiper from 'swiper';
 import SwiperAnimation from '@cycjimmy/swiper-animation';
+// import preloadImgs from 'utils/preloadImgs';
+import preloadImgsSequence from 'utils/preloadImgsSequence';
 import 'common/less/base.less';
 import 'swiper/swiper.min.css';
 import 'animate.css/animate.min.css';
-// import preloadImgs from 'utils/preloadImgs';
-import preloadImgsSequence from 'utils/preloadImgsSequence';
 import './index.less';
 
 class Index {
@@ -24,6 +24,7 @@ class Index {
       require('../../assets/images/bg3.png'),
       require('../../assets/images/intro.jpg'),
       require('../../assets/images/music_icon.png'),
+      require('../../assets/images/arrow.png'),
     ];
     preloadImgsSequence(images, (len, total) => {
       document.querySelector('.loaded').style.width = `${Math.floor(len * 100 / total)}%`;
@@ -35,6 +36,7 @@ class Index {
         const swiperAnimation = new SwiperAnimation();
         new Swiper('.swiper-container', {
           direction: 'vertical',
+          speed: 1000,
           on: {
             init: function () {
               swiperAnimation.init(this).animate();
