@@ -1,4 +1,4 @@
-; (function (win) {
+; (function (win, lib) {
   var doc = win.document;
   var docEl = doc.documentElement;
   var metaEl = doc.querySelector('meta[name="viewport"]');
@@ -6,6 +6,7 @@
   var dpr = 0;
   var scale = 0;
   var tid;
+  var flexible = lib.flexible || (lib.flexible = {});
 
   if (metaEl) {
     console.warn('将根据已有的meta标签来设置缩放比例');
@@ -69,7 +70,7 @@
     }
     var rem = width / 10;
     docEl.style.fontSize = rem + 'px';
-    win.rem = rem;
+    flexible.rem = win.rem = rem;
   }
 
   win.addEventListener('resize', function () {
@@ -93,4 +94,24 @@
 
 
   refreshRem();
-})(window);
+
+  flexible.dpr = win.dpr = dpr;
+  flexible.refreshRem = refreshRem;
+  function rem2px(d) {
+    var val = parseFloat(d) * this.rem;
+    if (typeof d === 'string' && d.match(/rem$/)) {
+      val += 'px';
+    }
+    return val;
+  }
+  flexible.rem2px = rem2px;
+  function px2rem(d) {
+    var val = parseFloat(d) / this.rem;
+    if (typeof d === 'string' && d.match(/px$/)) {
+      val += 'rem';
+    }
+    return val;
+  }
+  flexible.px2rem = px2rem;
+
+})(window, window['lib'] || (window['lib'] = {}));
